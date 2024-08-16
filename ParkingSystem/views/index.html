@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Estacionamiento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-bar">
+        <h1>Sistema de Estacionamiento</h1>
+    </div>
+    <div class="container">
+        <h2>Registros</h2>
+        <form id="parkingForm" action="records.php" method="POST" onsubmit="return handleSubmit()">
+            <table id="recordsTable">
+                <thead>
+                    <tr>
+                        <th>Núm. Placa</th>
+                        <th>Tipo de Vehículo</th>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                        <th>Total a Pagar</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="plateNumber[]" required></td>
+                        <td>
+                            <select name="vehicleType[]" required>
+                                <option value="1">Residente</option>
+                                <option value="2">No Residente</option>
+                                <option value="3">Oficial</option>
+                            </select>
+                        </td>
+                        <td><input type="datetime-local" name="entryDate[]" required readonly id="entryDate"></td>
+                        <td><input type="datetime-local" name="exitDate[]" onchange="calculateTotal(this)"></td>
+                        <td><input type="text" name="totalAmount[]" readonly value="$0.00"></td>
+                        <td>
+                            <button type="button" class="editBtn"><img src="images/editar.png" alt="Editar" /></button>
+                            <button type="button" class="printBtn"><img src="images/imprimir.png" alt="Imprimir en Excel" /></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="saveBtn">Guardar</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
